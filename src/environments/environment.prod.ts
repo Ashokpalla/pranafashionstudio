@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://pranafashion-backend.onrender.com/api'
+  apiUrl: 'https://api.pranafashionstudio.com/api'
 };

@@ -1,0 +1,56 @@
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,246,238,0.96); backdrop-filter: blur(8px);
+  border-bottom: 1px solid #E2D5B8;
+  transition: box-shadow .3s;
+}
+nav.scrolled { box-shadow: 0 4px 24px rgba(26,18,8,0.08); }
+.nav-inner {
+  max-width: 1300px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 64px;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #C9A84C; }
+.logo svg { width: 32px; height: 32px; }
+.logo-text { display: flex; flex-direction: column; }
+.brand { font-family: "Cormorant Garamond", serif; font-size: 20px; font-weight: 600; letter-spacing: 3px; color: #1A1208; }
+.tagline { font-size: 9px; letter-spacing: 4px; color: #C9A84C; text-transform: uppercase; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #4A3728; text-decoration: none; transition: color .3s; }
+.nav-links a:hover, .nav-links a.active { color: #C9A84C; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.icon-btn { background: none; border: none; cursor: pointer; padding: 6px; color: #1A1208; position: relative; }
+.icon-btn svg { width: 22px; height: 22px; display: block; }
+.icon-btn:hover { color: #C9A84C; }
+.badge {
+  position: absolute; top: 0; right: 0;
+  background: #C9A84C; color: #1A1208; font-size: 9px; font-weight: 600;
+  width: 16px; height: 16px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-login {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: #1A1208; text-decoration: none; border: 1px solid #1A1208;
+  padding: 8px 18px; transition: all .3s;
+}
+.btn-login:hover { background: #1A1208; color: #E8C97A; }
+.menu-btn { display: none; }
+.mobile-menu {
+  display: flex; flex-direction: column;
+  padding: 16px 24px; border-top: 1px solid #E2D5B8; gap: 4px;
+}
+.mobile-menu a, .mobile-menu button {
+  font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  color: #4A3728; text-decoration: none; padding: 10px 0;
+  border-bottom: 1px solid #F5EDD6;
+  background: none; border-left: none; border-right: none; border-top: none;
+  cursor: pointer; text-align: left;
+}
+.mobile-menu a:hover { color: #C9A84C; }
+.mobile-login { color: #C9A84C !important; }
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 20px; }
+  .nav-links { display: none; }
+  .btn-login { display: none; }
+  .menu-btn { display: flex; }
+}

@@ -1,0 +1,83 @@
+<div class="auth-page">
+  <div class="auth-card" style="max-width:520px">
+    <div class="auth-header">
+      <div class="auth-logo">PRANA</div>
+      <span class="auth-logo-sub">Fashion Studio</span>
+      <h1>Create Account</h1>
+      <p>Join the Prana family and enjoy exclusive collections</p>
+    </div>
+
+    @if (errorMsg()) {
+      <div class="alert-error"><span>✕</span> {{ errorMsg() }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" formControlName="name" placeholder="Your full name"
+               [class.error-input]="form.get('name')?.invalid && form.get('name')?.touched"/>
+        @if (form.get('name')?.invalid && form.get('name')?.touched) {
+          <span class="field-error">Name must be at least 2 characters</span>
+        }
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" formControlName="email" placeholder="your@email.com"
+                 [class.error-input]="form.get('email')?.invalid && form.get('email')?.touched"/>
+          @if (form.get('email')?.invalid && form.get('email')?.touched) {
+            <span class="field-error">Valid email required</span>
+          }
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" formControlName="phone" placeholder="10-digit mobile"
+                 [class.error-input]="form.get('phone')?.invalid && form.get('phone')?.touched"/>
+          @if (form.get('phone')?.invalid && form.get('phone')?.touched) {
+            <span class="field-error">Valid 10-digit number</span>
+          }
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <div class="input-wrap">
+          <input [type]="showPwd() ? 'text' : 'password'" formControlName="password" placeholder="Min 8 characters"
+                 [class.error-input]="form.get('password')?.invalid && form.get('password')?.touched"/>
+          <button type="button" class="eye-btn" (click)="showPwd.set(!showPwd())">{{ showPwd() ? '🙈' : '👁️' }}</button>
+        </div>
+        @if (pwdValue) {
+          <div class="strength-bar">
+            <div class="strength-fill" [style.width]="(passwordStrength().score / 4 * 100) + '%'" [style.background]="passwordStrength().color"></div>
+          </div>
+          <div class="strength-text" [style.color]="passwordStrength().color">{{ passwordStrength().label }}</div>
+        }
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+          <span class="field-error">Minimum 8 characters required</span>
+        }
+      </div>
+
+      <div class="field">
+        <label>Confirm Password</label>
+        <div class="input-wrap">
+          <input [type]="showCpwd() ? 'text' : 'password'" formControlName="confirmPassword" placeholder="Repeat password"
+                 [class.error-input]="form.errors?.['mismatch'] && form.get('confirmPassword')?.touched"/>
+          <button type="button" class="eye-btn" (click)="showPwd.set(!showPwd())">{{ showCpwd() ? '🙈' : '👁️' }}</button>
+        </div>
+        @if (form.errors?.['mismatch'] && form.get('confirmPassword')?.touched) {
+          <span class="field-error">Passwords do not match</span>
+        }
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="auth.loading()">
+        @if (auth.loading()) { <span>Creating Account…</span> } @else { <span>Create Account →</span> }
+      </button>
+    </form>
+
+    <div class="auth-divider">or</div>
+    <div class="auth-footer">
+      Already have an account? <a routerLink="/auth/login">Sign in here</a>
+    </div>
+  </div>
+</div>

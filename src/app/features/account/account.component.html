@@ -1,0 +1,32 @@
+<div class="account-page">
+  <div class="page-header">
+    <div class="breadcrumb"><a routerLink="/">Home</a> / <span>My Account</span></div>
+    <h1>Welcome, {{ auth.user()?.name }}</h1>
+    <p>Manage your profile, orders, and preferences</p>
+  </div>
+  <div class="account-body">
+    <div class="account-grid">
+      <a routerLink="/account/orders" class="acc-card">
+        <div class="acc-icon">📦</div>
+        <div class="acc-title">My Orders</div>
+        <div class="acc-desc">Track and manage your orders</div>
+      </a>
+      <a routerLink="/cart" class="acc-card">
+        <div class="acc-icon">🛍</div>
+        <div class="acc-title">My Cart</div>
+        <div class="acc-desc">View items in your cart</div>
+      </a>
+      <div class="acc-card no-hover">
+        <div class="acc-icon">👤</div>
+        <div class="acc-title">Profile</div>
+        <div class="acc-desc">{{ auth.user()?.email }}</div>
+        <div class="acc-desc">{{ auth.user()?.phone }}</div>
+      </div>
+      <button class="acc-card logout-card" (click)="auth.logout()">
+        <div class="acc-icon">🚪</div>
+        <div class="acc-title">Sign Out</div>
+        <div class="acc-desc">Log out of your account</div>
+      </button>
+    </div>
+  </div>
+</div>

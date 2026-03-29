@@ -1,0 +1,42 @@
+.cart-page { padding-top:64px; min-height:100vh; background:#FAF6EE; }
+.page-header { background:linear-gradient(135deg,#FDF9F2,#F5EDD6); padding:48px 40px 40px; border-bottom:1px solid #E2D5B8; }
+.breadcrumb { font-size:12px; letter-spacing:2px; color:#8B7355; margin-bottom:12px; }
+.breadcrumb a { color:#C9A84C; text-decoration:none; }
+.page-header h1 { font-family:"Cormorant Garamond",serif; font-size:42px; font-weight:300; color:#1A1208; }
+.cart-body { max-width:1300px; margin:0 auto; padding:48px 40px; }
+.empty-cart { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:100px 20px; gap:16px; text-align:center; }
+.empty-icon { font-size:56px; opacity:0.3; }
+.empty-cart h2 { font-family:"Cormorant Garamond",serif; font-size:32px; font-weight:300; color:#1A1208; }
+.empty-cart p { font-size:14px; color:#8B7355; }
+.btn-shop { background:#1A1208; color:#E8C97A; font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:14px 32px; text-decoration:none; display:inline-block; }
+.cart-layout { display:grid; grid-template-columns:1fr 360px; gap:40px; align-items:start; }
+.cart-row { display:grid; grid-template-columns:2fr 1fr 1fr 1fr 32px; gap:16px; align-items:center; padding:20px 0; border-bottom:1px solid #F5EDD6; }
+.item-info { display:flex; gap:14px; align-items:center; }
+.item-thumb { width:64px; height:72px; background:linear-gradient(135deg,#FAF6EE,#F5EDD6); border:1px solid #E2D5B8; display:flex; align-items:center; justify-content:center; font-size:28px; flex-shrink:0; }
+.item-name { font-family:"Cormorant Garamond",serif; font-size:17px; color:#1A1208; margin-bottom:3px; }
+.item-sub { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#8B7355; }
+.item-price,.item-total { font-size:15px; color:#4A3728; }
+.item-total { font-weight:500; color:#C9A84C; }
+.qty-ctrl { display:flex; align-items:center; border:1px solid #E2D5B8; width:fit-content; }
+.qty-ctrl button { width:30px; height:30px; background:none; border:none; cursor:pointer; font-size:16px; color:#4A3728; }
+.qty-ctrl button:hover { background:#F5EDD6; }
+.qty-ctrl span { width:32px; text-align:center; font-size:14px; font-weight:500; }
+.remove-btn { background:none; border:none; cursor:pointer; font-size:13px; color:#8B7355; }
+.remove-btn:hover { color:#E8593C; }
+.cart-actions { display:flex; justify-content:space-between; align-items:center; padding-top:20px; }
+.btn-continue { font-size:12px; letter-spacing:2px; color:#4A3728; text-decoration:none; text-transform:uppercase; }
+.btn-continue:hover { color:#C9A84C; }
+.btn-clear { background:none; border:1px solid #E2D5B8; color:#8B7355; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:8px 20px; cursor:pointer; }
+.btn-clear:hover { border-color:#E8593C; color:#E8593C; }
+.order-summary { background:#FDF9F2; border:1px solid #E2D5B8; padding:32px; position:sticky; top:84px; }
+.order-summary h3 { font-family:"Cormorant Garamond",serif; font-size:22px; font-weight:400; color:#1A1208; margin-bottom:24px; padding-bottom:16px; border-bottom:1px solid #E2D5B8; }
+.summary-lines { display:flex; flex-direction:column; gap:12px; margin-bottom:20px; }
+.summary-line { display:flex; justify-content:space-between; font-size:14px; color:#4A3728; }
+.summary-line.saving { color:#2A7A4A; }
+.summary-line.total { font-size:18px; font-weight:500; color:#1A1208; padding-top:14px; border-top:1px solid #E2D5B8; }
+.free { color:#2A7A4A; font-weight:500; }
+.btn-checkout { display:block; text-align:center; background:#1A1208; color:#E8C97A; font-family:"Jost",sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:16px; text-decoration:none; margin-bottom:14px; }
+.btn-checkout:hover { background:#C9A84C; color:#1A1208; }
+.secure-note { text-align:center; font-size:11px; color:#8B7355; }
+@media (max-width:1024px) { .cart-layout { grid-template-columns:1fr; } .order-summary { position:static; } }
+@media (max-width:768px) { .cart-body { padding:32px 20px; } .cart-row { grid-template-columns:1fr; gap:10px; } }

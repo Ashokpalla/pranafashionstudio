@@ -1,0 +1,51 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-logo">PRANA</div>
+      <span class="auth-logo-sub">Fashion Studio</span>
+      <h1>Welcome Back</h1>
+      <p>Sign in to access your account and orders</p>
+    </div>
+
+    @if (errorMsg()) {
+      <div class="alert-error">
+        <span>✕</span> {{ errorMsg() }}
+      </div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" formControlName="email" placeholder="your@email.com"
+               [class.error-input]="form.get('email')?.invalid && form.get('email')?.touched"/>
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <span class="field-error">Please enter a valid email address</span>
+        }
+      </div>
+
+      <div class="field">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <label>Password</label>
+          <a routerLink="/auth/forgot-password" style="font-size:11px;color:#C9A84C;text-decoration:none;letter-spacing:1px;">Forgot password?</a>
+        </div>
+        <div class="input-wrap">
+          <input [type]="showPwd() ? 'text' : 'password'" formControlName="password" placeholder="Your password"
+                 [class.error-input]="form.get('password')?.invalid && form.get('password')?.touched"/>
+          <button type="button" class="eye-btn" (click)="showPwd.set(!showPwd())">{{ showPwd() ? '🙈' : '👁️' }}</button>
+        </div>
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+          <span class="field-error">Password is required</span>
+        }
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="auth.loading()">
+        @if (auth.loading()) { <span>Signing In…</span> } @else { <span>Sign In →</span> }
+      </button>
+    </form>
+
+    <div class="auth-divider">or</div>
+    <div class="auth-footer">
+      Don't have an account? <a routerLink="/auth/register">Create one here</a>
+    </div>
+  </div>
+</div>

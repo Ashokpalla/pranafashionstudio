@@ -1,0 +1,47 @@
+<div class="orders-page">
+  <div class="page-header">
+    <div class="breadcrumb">
+      <a routerLink="/">Home</a> / <a routerLink="/account">Account</a> / <span>My Orders</span>
+    </div>
+    <h1>My Orders</h1>
+  </div>
+  <div class="orders-body">
+    @if (loading()) {
+      <div class="loading">Loading your orders…</div>
+    } @else if (orders().length === 0) {
+      <div class="empty">
+        <div class="empty-icon">📦</div>
+        <h2>No orders yet</h2>
+        <p>When you place an order, it will appear here</p>
+        <a routerLink="/products" class="btn-shop">Start Shopping →</a>
+      </div>
+    } @else {
+      <div class="orders-list">
+        @for (order of orders(); track order.id) {
+          <div class="order-card">
+            <div class="order-head">
+              <div>
+                <div class="order-id">Order #{{ order.id }}</div>
+                <div class="order-date">{{ order.createdAt | date:'dd MMM yyyy' }}</div>
+              </div>
+              <div class="order-status status-{{ order.status }}">{{ order.status }}</div>
+            </div>
+            <div class="order-items">
+              @for (item of order.items; track item.productId) {
+                <div class="order-item">
+                  <span class="item-name">{{ item.productName }}</span>
+                  <span class="item-qty">× {{ item.quantity }}</span>
+                  <span class="item-price">₹{{ item.unitPrice * item.quantity | number }}</span>
+                </div>
+              }
+            </div>
+            <div class="order-foot">
+              <div class="payment-badge">{{ order.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Online Payment' }}</div>
+              <div class="order-total">Total: <strong>₹{{ order.total | number }}</strong></div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

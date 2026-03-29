@@ -1,0 +1,32 @@
+.orders-page { padding-top:64px; min-height:100vh; background:#FAF6EE; }
+.page-header { background:linear-gradient(135deg,#FDF9F2,#F5EDD6); padding:60px 40px 48px; border-bottom:1px solid #E2D5B8; }
+.breadcrumb { font-size:12px; letter-spacing:2px; color:#8B7355; margin-bottom:12px; }
+.breadcrumb a { color:#C9A84C; text-decoration:none; }
+.page-header h1 { font-family:"Cormorant Garamond",serif; font-size:40px; font-weight:300; color:#1A1208; }
+.orders-body { max-width:900px; margin:0 auto; padding:48px 40px; }
+.loading { text-align:center; padding:80px; font-size:14px; color:#8B7355; letter-spacing:2px; }
+.empty { text-align:center; padding:80px 20px; display:flex; flex-direction:column; align-items:center; gap:14px; }
+.empty-icon { font-size:48px; opacity:0.3; }
+.empty h2 { font-family:"Cormorant Garamond",serif; font-size:28px; font-weight:300; color:#1A1208; }
+.empty p { font-size:14px; color:#8B7355; }
+.btn-shop { background:#1A1208; color:#E8C97A; font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:12px 28px; text-decoration:none; }
+.orders-list { display:flex; flex-direction:column; gap:20px; }
+.order-card { background:#FDF9F2; border:1px solid #E2D5B8; }
+.order-head { display:flex; justify-content:space-between; align-items:flex-start; padding:20px 24px; border-bottom:1px solid #F5EDD6; }
+.order-id { font-family:"Cormorant Garamond",serif; font-size:18px; color:#1A1208; margin-bottom:4px; }
+.order-date { font-size:12px; color:#8B7355; }
+.order-status { font-size:10px; letter-spacing:3px; text-transform:uppercase; padding:6px 14px; border:1px solid; }
+.status-placed,.status-confirmed { color:#4A6B8B; border-color:#4A6B8B; background:rgba(74,107,139,0.06); }
+.status-shipped { color:#3A6B8B; border-color:#3A6B8B; background:rgba(58,107,139,0.06); }
+.status-delivered { color:#2A7A4A; border-color:#2A7A4A; background:rgba(42,122,74,0.06); }
+.status-cancelled { color:#E8593C; border-color:#E8593C; background:rgba(232,89,60,0.06); }
+.order-items { padding:16px 24px; display:flex; flex-direction:column; gap:8px; }
+.order-item { display:flex; align-items:center; gap:12px; font-size:13px; }
+.item-name { flex:1; color:#1A1208; }
+.item-qty { color:#8B7355; }
+.item-price { font-weight:500; color:#C9A84C; min-width:80px; text-align:right; }
+.order-foot { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-top:1px solid #F5EDD6; }
+.payment-badge { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#8B7355; }
+.order-total { font-size:14px; color:#4A3728; }
+.order-total strong { color:#C9A84C; font-size:16px; }
+@media (max-width:768px) { .orders-body { padding:32px 20px; } }

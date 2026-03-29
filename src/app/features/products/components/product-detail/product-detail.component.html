@@ -1,0 +1,120 @@
+<div class="detail-page">
+
+  @if (loading()) {
+  <div class="loading">Loading…</div>
+  }
+
+  @else if (product()) {
+
+  <div class="detail-inner">
+
+    <div class="breadcrumb">
+      <a routerLink="/">Home</a> /
+      <a routerLink="/products">Collections</a> /
+      <span>{{ product()?.name }}</span>
+    </div>
+
+    <div class="detail-grid">
+
+      <div class="detail-img-wrap">
+        @if (product()?.badge) {
+        <span class="badge">{{ product()?.badge }}</span>
+        }
+
+        <div class="detail-img" [style.background]="categoryGradient">
+          <span class="detail-emoji">{{ categoryEmoji }}</span>
+        </div>
+      </div>
+
+      <div class="detail-info">
+
+        <div class="detail-category">
+          {{ product()?.subCategory }}
+        </div>
+
+        <h1>{{ product()?.name }}</h1>
+
+        <div class="detail-rating">
+          @for (s of stars(); track $index) {
+          <span [class]="s ? 'star filled' : 'star'">★</span>
+          }
+          <span class="review-ct">
+            ({{ product()?.reviewCount }} reviews)
+          </span>
+        </div>
+
+        <div class="detail-price">
+          <span class="price">₹{{ product()?.price | number }}</span>
+
+          @if (product()?.originalPrice) {
+          <span class="price-old">
+            ₹{{ product()?.originalPrice | number }}
+          </span>
+
+          <span class="saving">
+            Save ₹{{ ((product()?.originalPrice ?? 0) - (product()?.price ?? 0)) | number }}
+          </span>
+          }
+        </div>
+
+        <p class="detail-desc">
+          {{ product()?.description }}
+        </p>
+
+        <!-- Sizes -->
+        @if ((product()?.sizes?.length ?? 0) > 0) {
+        <div class="size-section">
+          <div class="attr-label">Size</div>
+
+          <div class="size-options">
+            @for (size of product()?.sizes; track size) {
+            <button class="size-btn" [class.selected]="selectedSize() === size" (click)="selectedSize.set(size)">
+              {{ size }}
+            </button>
+            }
+          </div>
+        </div>
+        }
+
+        <!-- Colors -->
+        @if ((product()?.colors?.length ?? 0) > 0) {
+        <div class="color-section">
+          <div class="attr-label">Colour</div>
+
+          <div class="color-options">
+            @for (color of product()?.colors; track color) {
+            <button class="color-btn" [class.selected]="selectedColor() === color" (click)="selectedColor.set(color)">
+              {{ color }}
+            </button>
+            }
+          </div>
+        </div>
+        }
+
+        <!-- Actions -->
+        <div class="detail-actions">
+          <button class="btn-add" [disabled]="!product()?.inStock" (click)="addToCart()">
+
+            {{ product()?.inStock ? 'Add to Cart' : 'Out of Stock' }}
+
+          </button>
+        </div>
+
+        <!-- Stock -->
+        <div class="stock-note">
+          @if (product()?.inStock) {
+          <span class="in-stock">
+            ✓ In Stock ({{ product()?.stockCount }} units)
+          </span>
+          } @else {
+          <span class="out-stock">✕ Out of Stock</span>
+          }
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  }
+
+</div>

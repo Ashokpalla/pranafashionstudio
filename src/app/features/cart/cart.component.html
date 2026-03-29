@@ -1,0 +1,57 @@
+<div class="cart-page">
+  <div class="page-header">
+    <div class="breadcrumb"><a routerLink="/">Home</a> / <span>My Cart</span></div>
+    <h1>Shopping Cart</h1>
+  </div>
+  <div class="cart-body">
+    @if (cart.items().length === 0) {
+      <div class="empty-cart">
+        <div class="empty-icon">🛍</div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added anything yet</p>
+        <a routerLink="/products" class="btn-shop">Browse Collections →</a>
+      </div>
+    } @else {
+      <div class="cart-layout">
+        <div class="cart-items">
+          @for (item of cart.items(); track item.productId) {
+            <div class="cart-row">
+              <div class="item-info">
+                <div class="item-thumb"><span>{{ getEmoji(item.product.category) }}</span></div>
+                <div class="item-details">
+                  <div class="item-name">{{ item.product.name }}</div>
+                  <div class="item-sub">{{ item.product.subCategory }}</div>
+                </div>
+              </div>
+              <div class="item-price">₹{{ item.product.price | number }}</div>
+              <div class="qty-ctrl">
+                <button (click)="cart.updateQuantity(item.productId, item.quantity - 1, item.size, item.color)">−</button>
+                <span>{{ item.quantity }}</span>
+                <button (click)="cart.updateQuantity(item.productId, item.quantity + 1, item.size, item.color)">+</button>
+              </div>
+              <div class="item-total">₹{{ item.product.price * item.quantity | number }}</div>
+              <button class="remove-btn" (click)="cart.removeItem(item.productId, item.size, item.color)">✕</button>
+            </div>
+          }
+          <div class="cart-actions">
+            <a routerLink="/products" class="btn-continue">← Continue Shopping</a>
+            <button class="btn-clear" (click)="clearCart()">Clear Cart</button>
+          </div>
+        </div>
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-lines">
+            <div class="summary-line"><span>Subtotal ({{ cart.totalItems() }} items)</span><span>₹{{ cart.subtotal() | number }}</span></div>
+            @if (cart.discount() > 0) {
+              <div class="summary-line saving"><span>You Save</span><span>− ₹{{ cart.discount() | number }}</span></div>
+            }
+            <div class="summary-line"><span>Shipping</span><span class="free">FREE</span></div>
+            <div class="summary-line total"><span>Total</span><span>₹{{ cart.total() | number }}</span></div>
+          </div>
+          <a routerLink="/account" class="btn-checkout">Proceed to Checkout →</a>
+          <div class="secure-note">🔒 Secure checkout &nbsp;|&nbsp; Free shipping on all orders</div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

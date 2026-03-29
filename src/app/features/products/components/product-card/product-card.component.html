@@ -1,0 +1,41 @@
+<div class="card">
+  <a [routerLink]="['/products', product.id]" class="card-img-wrap">
+    @if (product.badge) {
+      <span class="badge">{{ product.badge }}</span>
+    }
+    @if (!product.inStock) {
+      <span class="badge out">Out of Stock</span>
+    }
+    <div class="card-img" [style.background]="categoryGradient">
+      <span class="product-emoji">{{ categoryEmoji }}</span>
+    </div>
+    <div class="card-overlay">
+      <span class="quick-view">Quick View</span>
+    </div>
+  </a>
+  <div class="card-body">
+    <div class="card-category">{{ product.subCategory }}</div>
+    <a [routerLink]="['/products', product.id]" class="card-name">{{ product.name }}</a>
+    <div class="card-rating">
+      @for (star of stars(); track $index) {
+        <span [class]="star ? 'star filled' : 'star'">★</span>
+      }
+      <span class="review-count">({{ product.reviewCount }})</span>
+    </div>
+    <div class="card-footer">
+      <div class="price-wrap">
+        <span class="price">₹{{ product.price | number }}</span>
+        @if (product.originalPrice) {
+          <span class="price-old">₹{{ product.originalPrice | number }}</span>
+        }
+      </div>
+      <button class="add-btn" [disabled]="!product.inStock" (click)="addToCart()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

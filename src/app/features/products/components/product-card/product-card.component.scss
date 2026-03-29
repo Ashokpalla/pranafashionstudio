@@ -1,0 +1,27 @@
+.card { background:#FDF9F2; border:1px solid #E2D5B8; transition:all .35s; position:relative; }
+.card:hover { border-color:#C9A84C; box-shadow:0 12px 40px rgba(26,18,8,0.08); transform:translateY(-3px); }
+.card-img-wrap { display:block; position:relative; text-decoration:none; overflow:hidden; }
+.badge { position:absolute; top:12px; left:12px; z-index:2; background:#C9A84C; color:#1A1208; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; }
+.badge.out { background:#1A1208; color:#E8C97A; left:auto; right:12px; }
+.card-img { height:260px; overflow:hidden; display:flex; align-items:center; justify-content:center; transition:transform .4s; }
+.card:hover .card-img { transform:scale(1.04); }
+.product-emoji { font-size:64px; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.1)); }
+.card-overlay { position:absolute; inset:0; background:rgba(26,18,8,0.5); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .3s; }
+.card:hover .card-overlay { opacity:1; }
+.quick-view { color:#E8C97A; font-size:12px; letter-spacing:3px; text-transform:uppercase; border:1px solid #E8C97A; padding:10px 24px; }
+.card-body { padding:16px; }
+.card-category { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#8B7355; margin-bottom:6px; }
+.card-name { display:block; font-family:"Cormorant Garamond",serif; font-size:20px; font-weight:400; color:#1A1208; text-decoration:none; margin-bottom:8px; }
+.card-name:hover { color:#C9A84C; }
+.card-rating { display:flex; align-items:center; gap:2px; margin-bottom:12px; }
+.star { color:#E2D5B8; font-size:13px; }
+.star.filled { color:#C9A84C; }
+.review-count { font-size:11px; color:#8B7355; margin-left:4px; }
+.card-footer { display:flex; justify-content:space-between; align-items:center; padding-top:12px; border-top:1px solid #E2D5B8; }
+.price-wrap { display:flex; align-items:baseline; gap:8px; }
+.price { font-size:18px; font-weight:500; color:#C9A84C; }
+.price-old { font-size:13px; color:#8B7355; text-decoration:line-through; }
+.add-btn { width:36px; height:36px; border:1px solid #1A1208; background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .3s; color:#1A1208; }
+.add-btn svg { width:16px; height:16px; }
+.add-btn:hover { background:#1A1208; color:#E8C97A; }
+.add-btn:disabled { opacity:0.4; cursor:not-allowed; }

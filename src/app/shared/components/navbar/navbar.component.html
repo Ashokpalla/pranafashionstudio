@@ -1,0 +1,70 @@
+<nav [class.scrolled]="scrolled()">
+  <div class="nav-inner">
+    <a class="logo" routerLink="/">
+      <svg viewBox="0 0 32 32" fill="none">
+        <polygon points="16,2 30,28 2,28" stroke="currentColor" stroke-width="1.2" fill="none" />
+        <polygon points="16,8 25,26 7,26" fill="rgba(201,168,76,0.15)" />
+        <line x1="16" y1="8" x2="16" y2="26" stroke="currentColor" stroke-width="0.8" />
+      </svg>
+      <div class="logo-text">
+        <span class="brand">PRANA</span>
+        <span class="tagline">Fashion Studio</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+      <li><a routerLink="/products" routerLinkActive="active">Collections</a></li>
+      <li><a routerLink="/products" [queryParams]="{category:'women'}">Women</a></li>
+      <li><a routerLink="/products" [queryParams]="{category:'men'}">Men</a></li>
+      <li><a routerLink="/" fragment="contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      @if (auth.isLoggedIn()) {
+      <a routerLink="/account" class="icon-btn" title="My Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+        </svg>
+      </a>
+      } @else {
+      <a routerLink="/auth/login" class="btn-login">Sign In</a>
+      }
+      <button class="icon-btn cart-btn" (click)="cart.toggleCart()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        @if (cart.totalItems() > 0) {
+        <span class="badge">{{ cart.totalItems() }}</span>
+        }
+      </button>
+      <button class="icon-btn menu-btn" (click)="toggleMenu()">
+         <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5">
+          @if (menuOpen()) {
+          <path d="M18 6L6 18M6 6l12 12" />
+          } @else {
+          <path d="M3 12h18M3 6h18M3 18h18" />
+          }
+        </svg>
+      </button>
+    </div>
+  </div>
+  @if (menuOpen()) {
+  <div class="mobile-menu">
+    <a routerLink="/" (click)="toggleMenu()">Home</a>
+    <a routerLink="/products" (click)="toggleMenu()">All Collections</a>
+    <a routerLink="/products" [queryParams]="{category:'women'}" (click)="toggleMenu()">Women's Ethnic</a>
+    <a routerLink="/products" [queryParams]="{category:'men'}" (click)="toggleMenu()">Men's Wear</a>
+    <a routerLink="/products" [queryParams]="{category:'western'}" (click)="toggleMenu()">Western Wear</a>
+    <a routerLink="/products" [queryParams]="{category:'kids'}" (click)="toggleMenu()">Kids</a>
+    @if (!auth.isLoggedIn()) {
+    <a routerLink="/auth/login" class="mobile-login" (click)="toggleMenu()">Sign In / Register</a>
+    } @else {
+    <a routerLink="/account" (click)="toggleMenu()">My Account</a>
+    <button (click)="auth.logout(); menuOpen.set(false)">Logout</button>
+    }
+  </div>
+  }
+</nav>

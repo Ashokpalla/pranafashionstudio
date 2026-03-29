@@ -1,0 +1,14 @@
+.account-page { padding-top:64px; min-height:100vh; background:#FAF6EE; }
+.page-header { background:linear-gradient(135deg,#FDF9F2,#F5EDD6); padding:60px 40px 48px; border-bottom:1px solid #E2D5B8; }
+.breadcrumb { font-size:12px; letter-spacing:2px; color:#8B7355; margin-bottom:12px; }
+.breadcrumb a { color:#C9A84C; text-decoration:none; }
+.page-header h1 { font-family:"Cormorant Garamond",serif; font-size:40px; font-weight:300; color:#1A1208; margin-bottom:8px; }
+.page-header p { font-size:14px; color:#8B7355; }
+.account-body { max-width:900px; margin:0 auto; padding:60px 40px; }
+.account-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:24px; }
+.acc-card { background:#FDF9F2; border:1px solid #E2D5B8; padding:32px 24px; text-decoration:none; display:block; transition:all .3s; cursor:pointer; text-align:left; font-family:inherit; width:100%; }
+.acc-card:hover:not(.no-hover) { border-color:#C9A84C; transform:translateY(-3px); box-shadow:0 8px 28px rgba(26,18,8,0.06); }
+.acc-icon { font-size:28px; margin-bottom:16px; }
+.acc-title { font-family:"Cormorant Garamond",serif; font-size:20px; color:#1A1208; margin-bottom:6px; }
+.acc-desc { font-size:12px; color:#8B7355; letter-spacing:1px; }
+.logout-card:hover { border-color:#E8593C !important; }

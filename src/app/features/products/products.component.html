@@ -1,0 +1,78 @@
+<div class="page">
+  <div class="page-header">
+    <div class="breadcrumb"><a routerLink="/">Home</a> / <span>Collections</span></div>
+    <h1>{{ pageTitle() }}</h1>
+  </div>
+  <div class="page-body">
+    <aside class="filter-panel" [class.open]="filterOpen()">
+      <div class="filter-head">
+        <h3>Filter</h3>
+        <button class="close-filter" (click)="filterOpen.set(false)">✕</button>
+      </div>
+      <div class="filter-section">
+        <h4>Category</h4>
+        <label class="check-label">
+          <input type="radio" name="category" value="" [(ngModel)]="activeCategory" (change)="applyFilter()"/>
+          <span>All Categories</span>
+        </label>
+        @for (cat of categories; track cat.slug) {
+          <label class="check-label">
+            <input type="radio" name="category" [value]="cat.slug" [(ngModel)]="activeCategory" (change)="applyFilter()"/>
+            <span>{{ cat.name }}</span>
+          </label>
+        }
+      </div>
+      <div class="filter-section">
+        <h4>Price Range</h4>
+        <div class="price-inputs">
+          <input type="number" placeholder="Min ₹" [(ngModel)]="minPrice" (change)="applyFilter()"/>
+          <span>—</span>
+          <input type="number" placeholder="Max ₹" [(ngModel)]="maxPrice" (change)="applyFilter()"/>
+        </div>
+      </div>
+      <div class="filter-section">
+        <h4>Sort By</h4>
+        <select [(ngModel)]="sortBy" (change)="applyFilter()">
+          <option value="newest">Newest First</option>
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+          <option value="rating">Best Rated</option>
+        </select>
+      </div>
+      <div class="filter-section">
+        <label class="check-label">
+          <input type="checkbox" [(ngModel)]="inStockOnly" (change)="applyFilter()"/>
+          <span>In Stock Only</span>
+        </label>
+      </div>
+      <button class="reset-btn" (click)="resetFilters()">Reset All Filters</button>
+    </aside>
+    <div class="results">
+      <div class="toolbar">
+        <button class="filter-toggle" (click)="filterOpen.set(true)">⚙ Filter</button>
+        <span class="result-count">{{ products().length }} items</span>
+        <div class="cat-pills">
+          <button class="pill" [class.active]="activeCategory === ''" (click)="activeCategory=''; applyFilter()">All</button>
+          @for (cat of categories; track cat.slug) {
+            <button class="pill" [class.active]="activeCategory === cat.slug" (click)="activeCategory=cat.slug; applyFilter()">{{ cat.name }}</button>
+          }
+        </div>
+      </div>
+      @if (productService.loading()) {
+        <div class="grid">
+          @for (s of [1,2,3,4,5,6,7,8]; track s) { <div class="skeleton"></div> }
+        </div>
+      } @else if (products().length === 0) {
+        <div class="empty-state">
+          <p>No products found. <button class="reset-btn" (click)="resetFilters()">Clear Filters</button></p>
+        </div>
+      } @else {
+        <div class="grid">
+          @for (product of products(); track product.id) {
+            <app-product-card [product]="product"></app-product-card>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

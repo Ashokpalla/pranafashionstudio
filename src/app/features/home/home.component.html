@@ -1,0 +1,172 @@
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="circle" style="width:600px;height:600px;top:-100px;right:-100px;"></div>
+    <div class="circle" style="width:350px;height:350px;bottom:-60px;left:-80px;"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">Est. 2026 · Kakinada, Andhra Pradesh</div>
+    <h1>Where <em>Elegance</em><br>Meets Tradition</h1>
+    <div class="divider"></div>
+    <p class="hero-sub">Premium fashion for every soul — ethnic, contemporary &amp; beyond</p>
+    <div class="hero-btns">
+      <a routerLink="/products" class="btn-primary">Explore Collections</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── CATEGORIES ──────────────────────────────────── -->
+<div class="categories">
+  <div class="cat-header">
+    <div class="section-tag">Our World</div>
+    <h2 class="section-title">Dress Every <em>Occasion</em></h2>
+  </div>
+  <div class="cat-grid">
+    @for (cat of categoryCards; track cat.slug) {
+      <a [routerLink]="['/products']" [queryParams]="{category: cat.slug}" class="cat-card">
+        <div class="cat-icon">{{ cat.emoji }}</div>
+        <div class="cat-name">{{ cat.name }}</div>
+        <div class="cat-desc">{{ cat.desc }}</div>
+        <span class="cat-arrow">→</span>
+      </a>
+    }
+  </div>
+</div>
+
+<!-- ── FEATURED PRODUCTS ────────────────────────────── -->
+<section class="featured" id="collections">
+  <div class="section-head">
+    <div>
+      <div class="section-tag">Curated For You</div>
+      <h2 class="section-title">Latest <em>Collections</em></h2>
+      <div class="rule"></div>
+    </div>
+    <a routerLink="/products" class="view-all">View All →</a>
+  </div>
+  @if (productService.loading()) {
+    <div class="loading-grid">
+      @for (s of [1,2,3,4]; track s) { <div class="skeleton-card"></div> }
+    </div>
+  } @else {
+    <div class="products-grid">
+      @for (product of featured(); track product.id) {
+        <app-product-card [product]="product"></app-product-card>
+      }
+    </div>
+  }
+</section>
+
+<!-- ── ABOUT ────────────────────────────────────────── -->
+<div class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual">
+      <div class="about-frame-main">
+        <svg width="200" height="280" viewBox="0 0 200 280">
+          <defs>
+            <linearGradient id="silk" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#F5EDD6"/>
+              <stop offset="100%" stop-color="#E8C97A" stop-opacity="0.3"/>
+            </linearGradient>
+          </defs>
+          <path d="M70,18 Q100,8 120,26 L134,168 Q129,228 110,268 Q90,282 80,274 Q65,260 70,232 L75,154 Q50,116 46,76 Q42,36 70,18Z" fill="url(#silk)" stroke="#C9A84C" stroke-width="0.8"/>
+          <circle cx="100" cy="12" r="7" fill="none" stroke="#C9A84C" stroke-width="0.8"/>
+          <text x="100" y="88" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="10" fill="#4A3728" letter-spacing="2">PRANA</text>
+          <line x1="44" y1="240" x2="156" y2="240" stroke="#C9A84C" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="about-frame-accent">
+        <span class="about-stat">500+</span>
+        <span class="about-stat-label">Designs In Store</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">Crafted with <em>Passion</em></h2>
+      <div class="rule"></div>
+      <p>Welcome to <strong>Prana Fashion Studio</strong> — Kakinada's destination for premium ethnic, contemporary, and fusion fashion. Nestled in the heart of Rajendra Nagar, we bring you curated collections that blend timeless Indian craftsmanship with modern sensibility.</p>
+      <p>Whether you're dressing for a grand celebration or an everyday moment, our range spans women's ethnics, men's formals, western wear, and kids collections — all under one roof.</p>
+      <div class="values">
+        @for (v of values; track v.name) {
+          <div class="val-item">
+            <span class="val-icon">{{ v.icon }}</span>
+            <div>
+              <div class="val-name">{{ v.name }}</div>
+              <div class="val-desc">{{ v.desc }}</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONTACT ───────────────────────────────────────── -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info-side">
+      <div class="section-tag" style="color:#E8C97A">Find Us</div>
+      <h2 class="section-title" style="color:#FDF9F2">Visit the <em>Studio</em></h2>
+      <div class="rule"></div>
+      <div class="info-list">
+        @for (info of contactInfo; track info.label) {
+          <div class="info-item">
+            <div class="info-icon">{{ info.icon }}</div>
+            <div>
+              <div class="info-label">{{ info.label }}</div>
+              <div class="info-val" [innerHTML]="info.value"></div>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="hours-card">
+        <div class="hours-title">Store Hours</div>
+        @for (h of storeHours; track h.days) {
+          <div class="hours-row"><span>{{ h.days }}</span><span>{{ h.time }}</span></div>
+        }
+      </div>
+    </div>
+    <div class="contact-form-side">
+      <div class="section-tag" style="color:#E8C97A;margin-bottom:10px">Get In Touch</div>
+      <h3 class="form-title">Send Us a <em>Message</em></h3>
+      <form [formGroup]="enquiryForm" (ngSubmit)="submitEnquiry()">
+        <div class="form-row">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" formControlName="name" placeholder="Full name"/>
+          </div>
+          <div class="field">
+            <label>Phone</label>
+            <input type="tel" formControlName="phone" placeholder="Mobile number"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Email (Optional)</label>
+          <input type="email" formControlName="email" placeholder="your@email.com"/>
+        </div>
+        <div class="field">
+          <label>I'm Looking For</label>
+          <select formControlName="category">
+            <option value="">Select a category</option>
+            <option>Women's Ethnic Wear</option>
+            <option>Men's Wear</option>
+            <option>Western Wear</option>
+            <option>Kids Wear</option>
+            <option>Bridal Collection</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Message</label>
+          <textarea formControlName="message" rows="4" placeholder="Tell us how we can help…"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" [disabled]="enquiryForm.invalid || submitting()">
+          {{ submitting() ? 'Sending…' : 'Send Message →' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

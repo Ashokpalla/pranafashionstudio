@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
   contactInfo = [
     { icon: '📍', label: 'Address',  value: 'D.No: 69-3-19/2, Ground Floor,<br>Rajendra Nagar, Kakinada – 533 002' },
     { icon: '📞', label: 'Phone',    value: '8019304566 &nbsp;|&nbsp; 9492704566' },
-    { icon: '✉',  label: 'Email',    value: 'pranafashionstudio2026@gmail.com' }
+    { icon: '✉',  label: 'Email',    value: 'contact@pranafashionstudio.com' }
   ];
 
   storeHours = [
